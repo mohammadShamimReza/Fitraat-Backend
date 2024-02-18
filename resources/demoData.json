@@ -1,72 +1,73 @@
 {
-  "user": {
-    "id": "asdfartwerknsdf",
+  "customer": {
+    "userId": "asdfartwerknsdf",
     "email": "user@gmail.com",
     "password": "asdfklajsdfoi345eadfslk",
     "country": "Bangladesh",
     "gender": "male",
     "age": 22,
     "phone": "01405723393",
-    "role": "user",
     "language": "english",
-    "trader": 40,
-    "day": {
+    "target": 40,
+    "completeDay": 0
+  },
+
+  "day": {
+    "id": 12345678,
+    "count": 1,
+    "video": {
       "id": 12345678,
-      "count": 1,
-      "video": {
-        "id": 12345678,
-        "URL": "http://youtube/asdfasd"
-      },
-      "videoComplete": true,
-      "kagel": {
-        "id": 12345678,
-        "time": [
-          { "squeeze": 5, "stop": 5 },
-          { "squeeze": 5, "stop": 5 },
-          { "squeeze": 5, "stop": 5 },
-          { "squeeze": 7, "stop": 7 },
-          { "squeeze": 7, "stop": 7 },
-          { "squeeze": 7, "stop": 7 },
-          { "squeeze": 9, "stop": 9 },
-          { "squeeze": 9, "stop": 9 },
-          { "squeeze": 9, "stop": 9 },
-          { "squeeze": 10, "stop": 10 }
-        ]
-      },
-      "kagelComplete": true,
-      "quiz": {
-        "id": 12345678,
-        "quizzes": [
-          { "question": "what is user name", "answer": "shamim" },
-          { "question": "what is user name", "answer": "shamim" },
-          { "question": "what is user name", "answer": "shamim" },
-          { "question": "what is user name", "answer": "shamim" },
-          { "question": "what is user name", "answer": "shamim" }
-        ]
-      },
-      "quizComplete": false,
-      "sortNote": {
-        "id": 12345678,
-        "content": "some string around 300 words"
-      },
-      "sortNoteComplete": false,
-      "blog": {
-        "id": 12345678,
-        "topic": "addiction",
-        "content": "kasljdfasiodjfk;alskdfjasldkifjasdlkfjasd;f",
-        "imageURL": "http://amazon.com/a;lksdfa/lkajsdf",
-        "keywords": [
-          "addiction",
-          "mobile",
-          "facebook",
-          "social media",
-          "instagram"
-        ],
-        "viewCount": 70,
-        "updatedAt": "12/4/2000",
-        "createdAt": "12/4/2000"
-      },
-      "reward": "you are doing really good"
-    }
+      "URL": "http://youtube/asdfasd"
+    },
+    "videoComplite": true,
+    "kagel": {
+      "id": 12345678,
+      "time": [
+        { "squeeze": 5, "stop": 5 },
+        { "squeeze": 5, "stop": 5 },
+        { "squeeze": 5, "stop": 5 },
+        { "squeeze": 7, "stop": 7 },
+        { "squeeze": 7, "stop": 7 },
+        { "squeeze": 7, "stop": 7 },
+        { "squeeze": 9, "stop": 9 },
+        { "squeeze": 9, "stop": 9 },
+        { "squeeze": 9, "stop": 9 },
+        { "squeeze": 10, "stop": 10 }
+      ]
+    },
+    "kagelComplite": true,
+    "quiz": {
+      "id": 12345678,
+      "quizs": [
+        { "question": "what is user name", "answer": "shamim" },
+        { "question": "what is user name", "answer": "shamim" },
+        { "question": "what is user name", "answer": "shamim" },
+        { "question": "what is user name", "answer": "shamim" },
+        { "question": "what is user name", "answer": "shamim" }
+      ]
+    },
+    "quizConplite": false,
+    "sortNote": {
+      "id": 12345678,
+      "content": "some string around 300 words"
+    },
+    "sortNoteComplite": false,
+    "blog": {
+      "id": 12345678,
+      "topic": "addiction",
+      "content": "kasljdfasiodjfk;alskdfjasldkifjasdlkfjasd;f",
+      "imageURL": "http://amazon.com/a;lksdfa/lkajsdf",
+      "keywords": [
+        "addiction",
+        "mobile",
+        "facebook",
+        "social media",
+        "instagram"
+      ],
+      "viewCount": 70,
+      "updatedAt": "12/4/2000",
+      "createdAt": "12/4/2000"
+    },
+    "reward": "you are doing really good"
   }
 }
