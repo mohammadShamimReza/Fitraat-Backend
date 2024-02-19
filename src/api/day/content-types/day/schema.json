@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "days",
+  "info": {
+    "singularName": "day",
+    "pluralName": "days",
+    "displayName": "Day",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "DayId": {
+      "type": "uid"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "videoComplete": {
+      "type": "boolean"
+    },
+    "kagel": {
+      "type": "integer"
+    },
+    "kagelComplete": {
+      "type": "boolean"
+    },
+    "quiz": {
+      "type": "integer"
+    },
+    "quizComplete": {
+      "type": "boolean"
+    },
+    "sortNote": {
+      "type": "richtext"
+    },
+    "sortNoteComplete": {
+      "type": "boolean"
+    },
+    "blog": {
+      "type": "integer"
+    },
+    "reward": {
+      "type": "text"
+    },
+    "VideoId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::video.video"
+    }
+  }
+}
