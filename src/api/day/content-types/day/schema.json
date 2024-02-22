@@ -28,7 +28,9 @@
       "type": "boolean"
     },
     "quiz": {
-      "type": "integer"
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz"
     },
     "quizComplete": {
       "type": "boolean"
@@ -39,16 +41,23 @@
     "sortNoteComplete": {
       "type": "boolean"
     },
-    "blog": {
-      "type": "integer"
-    },
     "reward": {
       "type": "text"
     },
-    "VideoId": {
+    "video": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::video.video"
+    },
+    "kegel": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::kegel.kegel"
+    },
+    "blog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog.blog"
     }
   }
 }

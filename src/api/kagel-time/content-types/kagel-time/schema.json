@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kagel_times",
+  "info": {
+    "singularName": "kagel-time",
+    "pluralName": "kagel-times",
+    "displayName": "kegelTime",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "squeeze": {
+      "type": "integer"
+    },
+    "stop": {
+      "type": "integer"
+    },
+    "kegel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::kegel.kegel",
+      "inversedBy": "kegel_times"
+    }
+  }
+}

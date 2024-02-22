@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sort_notes",
+  "info": {
+    "singularName": "sort-note",
+    "pluralName": "sort-notes",
+    "displayName": "SortNote"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sortNoteId": {
+      "type": "uid"
+    },
+    "sortNoteContent": {
+      "type": "richtext"
+    }
+  }
+}

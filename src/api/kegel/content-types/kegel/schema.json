@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kegels",
+  "info": {
+    "singularName": "kegel",
+    "pluralName": "kegels",
+    "displayName": "kegel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "KagelId": {
+      "type": "uid"
+    },
+    "kegel_times": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::kagel-time.kagel-time",
+      "mappedBy": "kegel"
+    }
+  }
+}

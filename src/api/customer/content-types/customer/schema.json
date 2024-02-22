@@ -4,7 +4,8 @@
   "info": {
     "singularName": "customer",
     "pluralName": "customers",
-    "displayName": "customer"
+    "displayName": "customer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -40,6 +41,9 @@
     },
     "country": {
       "type": "string"
+    },
+    "videoComplite": {
+      "type": "boolean"
     }
   }
 }
