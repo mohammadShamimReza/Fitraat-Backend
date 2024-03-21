@@ -918,6 +918,7 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
       'manyToOne',
       'api::kegel.kegel'
     >;
+    kagelTimeId: Attribute.UID;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -985,9 +986,10 @@ export interface ApiQuizContantQuizContant extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    question: Attribute.String;
-    answer: Attribute.String;
-    quizOptions: Attribute.String;
+    question: Attribute.String & Attribute.Required & Attribute.Unique;
+    answer: Attribute.String & Attribute.Required & Attribute.Unique;
+    quizOptions: Attribute.String & Attribute.Required & Attribute.Unique;
+    quizId: Attribute.UID;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1019,7 +1021,9 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
   };
   attributes: {
     sortNoteId: Attribute.UID;
-    sortNoteContent: Attribute.RichText;
+    sortNoteContent: Attribute.RichText &
+      Attribute.Required &
+      Attribute.DefaultTo<'\u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09B0 \u0995\u09BE\u099B\u09C7 \u09B8\u09CE \u09A5\u09BE\u0995\u09BE \u0986\u09B0 \u09A8\u09BF\u099C\u09C7\u09B0 \u09AC\u09BF\u09AC\u09C7\u0995\u09C7\u09B0 \u0995\u09BE\u099B\u09C7 \u09AA\u09B0\u09BF\u099A\u09CD\u099B\u09A8\u09CD\u09A8 \u09A5\u09BE\u0995\u09BE \u09B8\u09AC\u09A5\u09C7\u0995\u09C7 \u0995\u09A0\u09BF\u09A8\uD83D\uDE13 \u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09CD \u0986\u09AE\u09BE\u0995\u09C7 \u0986\u09B0 \u0986\u09AA\u09A8\u09BE\u09A6\u09C7\u09B0 \u09B8\u09AC\u09BE\u0987\u0995\u09C7 \u098F\u0987\u09B8\u09AC \u09AB\u09C7\u09CE\u09A8\u09BE \u09A5\u09C7\u0995\u09C7 \u09B9\u09C7\u09AB\u09BE\u099C\u09A4 \u0995\u09B0\u09C1\u0995\u0964\u0964\u0986\u09AE\u09C0\u09A8'>;
     day: Attribute.Relation<
       'api::sort-note.sort-note',
       'oneToOne',
@@ -1055,8 +1059,11 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    VideoId: Attribute.UID;
-    VideoUrl: Attribute.String;
+    videoId: Attribute.UID;
+    VideoUrl: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<'https://www.youtube.com/embed/7WUKdCV8J34'>;
     day: Attribute.Relation<'api::video.video', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

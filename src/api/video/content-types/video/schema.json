@@ -12,11 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "VideoId": {
+    "videoId": {
       "type": "uid"
     },
     "VideoUrl": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "default": "https://www.youtube.com/embed/7WUKdCV8J34"
     },
     "day": {
       "type": "relation",

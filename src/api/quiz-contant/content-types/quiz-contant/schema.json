@@ -13,13 +13,22 @@
   "pluginOptions": {},
   "attributes": {
     "question": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "answer": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "quizOptions": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "quizId": {
+      "type": "uid"
     }
   }
 }
