@@ -47,6 +47,18 @@
       "relation": "oneToOne",
       "target": "api::day.day",
       "inversedBy": "customer"
+    },
+    "videoComplete": {
+      "type": "boolean"
+    },
+    "kagelComplete": {
+      "type": "boolean"
+    },
+    "quizComplete": {
+      "type": "boolean"
+    },
+    "sortNoteComplete": {
+      "type": "boolean"
     }
   }
 }

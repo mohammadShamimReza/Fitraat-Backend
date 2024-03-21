@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "squeeze": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "stop": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "kegel": {
       "type": "relation",
@@ -25,7 +27,8 @@
       "inversedBy": "kegel_times"
     },
     "kagelTimeId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     }
   }
 }

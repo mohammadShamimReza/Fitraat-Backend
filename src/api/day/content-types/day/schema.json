@@ -13,22 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "DayId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "count": {
-      "type": "integer"
-    },
-    "videoComplete": {
-      "type": "boolean"
-    },
-    "kagelComplete": {
-      "type": "boolean"
-    },
-    "quizComplete": {
-      "type": "boolean"
-    },
-    "sortNoteComplete": {
-      "type": "boolean"
+      "type": "integer",
+      "required": true,
+      "unique": true
     },
     "reward": {
       "type": "text"

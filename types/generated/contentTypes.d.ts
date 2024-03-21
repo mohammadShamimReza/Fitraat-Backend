@@ -789,18 +789,21 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     singularName: 'blog';
     pluralName: 'blogs';
     displayName: 'Blog';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    BlogId: Attribute.UID;
-    topic: Attribute.String;
-    content: Attribute.Text;
-    title: Attribute.String;
-    imageURL: Attribute.String;
+    BlogId: Attribute.UID & Attribute.Required;
+    topic: Attribute.String & Attribute.Required;
+    content: Attribute.Text & Attribute.Required;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    imageURL: Attribute.String & Attribute.Required & Attribute.Unique;
     keywords: Attribute.JSON;
-    viewCount: Attribute.BigInteger;
+    viewCount: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.DefaultTo<'01'>;
     day: Attribute.Relation<'api::blog.blog', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -839,6 +842,10 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToOne',
       'api::day.day'
     >;
+    videoComplete: Attribute.Boolean;
+    kagelComplete: Attribute.Boolean;
+    quizComplete: Attribute.Boolean;
+    sortNoteComplete: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -869,12 +876,8 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    DayId: Attribute.UID;
-    count: Attribute.Integer;
-    videoComplete: Attribute.Boolean;
-    kagelComplete: Attribute.Boolean;
-    quizComplete: Attribute.Boolean;
-    sortNoteComplete: Attribute.Boolean;
+    DayId: Attribute.UID & Attribute.Required;
+    count: Attribute.Integer & Attribute.Required & Attribute.Unique;
     reward: Attribute.Text;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
     customer: Attribute.Relation<
@@ -911,14 +914,14 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    squeeze: Attribute.Integer;
-    stop: Attribute.Integer;
+    squeeze: Attribute.Integer & Attribute.Required;
+    stop: Attribute.Integer & Attribute.Required;
     kegel: Attribute.Relation<
       'api::kagel-time.kagel-time',
       'manyToOne',
       'api::kegel.kegel'
     >;
-    kagelTimeId: Attribute.UID;
+    kagelTimeId: Attribute.UID & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -949,7 +952,7 @@ export interface ApiKegelKegel extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    KagelId: Attribute.UID;
+    KagelId: Attribute.UID & Attribute.Required;
     kegel_times: Attribute.Relation<
       'api::kegel.kegel',
       'oneToMany',
@@ -1020,7 +1023,7 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    sortNoteId: Attribute.UID;
+    sortNoteId: Attribute.UID & Attribute.Required;
     sortNoteContent: Attribute.RichText &
       Attribute.Required &
       Attribute.DefaultTo<'\u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09B0 \u0995\u09BE\u099B\u09C7 \u09B8\u09CE \u09A5\u09BE\u0995\u09BE \u0986\u09B0 \u09A8\u09BF\u099C\u09C7\u09B0 \u09AC\u09BF\u09AC\u09C7\u0995\u09C7\u09B0 \u0995\u09BE\u099B\u09C7 \u09AA\u09B0\u09BF\u099A\u09CD\u099B\u09A8\u09CD\u09A8 \u09A5\u09BE\u0995\u09BE \u09B8\u09AC\u09A5\u09C7\u0995\u09C7 \u0995\u09A0\u09BF\u09A8\uD83D\uDE13 \u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09CD \u0986\u09AE\u09BE\u0995\u09C7 \u0986\u09B0 \u0986\u09AA\u09A8\u09BE\u09A6\u09C7\u09B0 \u09B8\u09AC\u09BE\u0987\u0995\u09C7 \u098F\u0987\u09B8\u09AC \u09AB\u09C7\u09CE\u09A8\u09BE \u09A5\u09C7\u0995\u09C7 \u09B9\u09C7\u09AB\u09BE\u099C\u09A4 \u0995\u09B0\u09C1\u0995\u0964\u0964\u0986\u09AE\u09C0\u09A8'>;
@@ -1059,7 +1062,7 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    videoId: Attribute.UID;
+    videoId: Attribute.UID & Attribute.Required;
     VideoUrl: Attribute.String &
       Attribute.Required &
       Attribute.Unique &

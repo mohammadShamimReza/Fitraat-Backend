@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "videoId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "VideoUrl": {
       "type": "string",

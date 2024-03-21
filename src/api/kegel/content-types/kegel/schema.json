@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "KagelId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "kegel_times": {
       "type": "relation",

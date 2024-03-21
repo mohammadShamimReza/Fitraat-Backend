@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "Blog"
+    "displayName": "Blog",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,25 +13,35 @@
   "pluginOptions": {},
   "attributes": {
     "BlogId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "topic": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": false
     },
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "imageURL": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "keywords": {
       "type": "json"
     },
     "viewCount": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true,
+      "default": "01"
     },
     "day": {
       "type": "relation",

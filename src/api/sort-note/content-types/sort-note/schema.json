@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "sortNoteId": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "sortNoteContent": {
       "type": "richtext",
