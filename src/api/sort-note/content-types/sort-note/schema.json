@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sort-note",
     "pluralName": "sort-notes",
-    "displayName": "SortNote"
+    "displayName": "SortNote",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

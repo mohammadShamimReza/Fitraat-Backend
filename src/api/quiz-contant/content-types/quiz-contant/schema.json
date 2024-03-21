@@ -4,7 +4,8 @@
   "info": {
     "singularName": "quiz-contant",
     "pluralName": "quiz-contants",
-    "displayName": "QuizContant"
+    "displayName": "QuizContant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,11 +18,8 @@
     "answer": {
       "type": "string"
     },
-    "quiz": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::quiz.quiz",
-      "inversedBy": "quiz_contants"
+    "quizOptions": {
+      "type": "string"
     }
   }
 }

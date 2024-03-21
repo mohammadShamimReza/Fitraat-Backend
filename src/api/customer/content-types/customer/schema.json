@@ -42,8 +42,11 @@
     "country": {
       "type": "string"
     },
-    "videoComplite": {
-      "type": "boolean"
+    "day": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::day.day",
+      "inversedBy": "customer"
     }
   }
 }

@@ -21,17 +21,8 @@
     "videoComplete": {
       "type": "boolean"
     },
-    "kagel": {
-      "type": "integer"
-    },
     "kagelComplete": {
       "type": "boolean"
-    },
-    "quiz": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::quiz.quiz",
-      "inversedBy": "day"
     },
     "quizComplete": {
       "type": "boolean"
@@ -42,11 +33,17 @@
     "reward": {
       "type": "text"
     },
-    "video": {
+    "blog": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::video.video",
+      "target": "api::blog.blog",
       "inversedBy": "day"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "mappedBy": "day"
     },
     "kegel": {
       "type": "relation",
@@ -54,10 +51,10 @@
       "target": "api::kegel.kegel",
       "inversedBy": "day"
     },
-    "blog": {
+    "video": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::blog.blog",
+      "target": "api::video.video",
       "inversedBy": "day"
     },
     "sort_note": {

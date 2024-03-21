@@ -834,7 +834,11 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     target: Attribute.Integer;
     completeDay: Attribute.Integer;
     country: Attribute.String;
-    videoComplite: Attribute.Boolean;
+    day: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'api::day.day'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -868,15 +872,18 @@ export interface ApiDayDay extends Schema.CollectionType {
     DayId: Attribute.UID;
     count: Attribute.Integer;
     videoComplete: Attribute.Boolean;
-    kagel: Attribute.Integer;
     kagelComplete: Attribute.Boolean;
-    quiz: Attribute.Relation<'api::day.day', 'oneToOne', 'api::quiz.quiz'>;
     quizComplete: Attribute.Boolean;
     sortNoteComplete: Attribute.Boolean;
     reward: Attribute.Text;
-    video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
-    kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
+    customer: Attribute.Relation<
+      'api::day.day',
+      'oneToOne',
+      'api::customer.customer'
+    >;
+    kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
+    video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
     sort_note: Attribute.Relation<
       'api::day.day',
       'oneToOne',
@@ -966,41 +973,13 @@ export interface ApiKegelKegel extends Schema.CollectionType {
   };
 }
 
-export interface ApiQuizQuiz extends Schema.CollectionType {
-  collectionName: 'quizzes';
-  info: {
-    singularName: 'quiz';
-    pluralName: 'quizzes';
-    displayName: 'quiz';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    QuizId: Attribute.UID;
-    quiz_contants: Attribute.Relation<
-      'api::quiz.quiz',
-      'oneToMany',
-      'api::quiz-contant.quiz-contant'
-    >;
-    day: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'api::day.day'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiQuizContantQuizContant extends Schema.CollectionType {
   collectionName: 'quiz_contants';
   info: {
     singularName: 'quiz-contant';
     pluralName: 'quiz-contants';
     displayName: 'QuizContant';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1008,11 +987,7 @@ export interface ApiQuizContantQuizContant extends Schema.CollectionType {
   attributes: {
     question: Attribute.String;
     answer: Attribute.String;
-    quiz: Attribute.Relation<
-      'api::quiz-contant.quiz-contant',
-      'manyToOne',
-      'api::quiz.quiz'
-    >;
+    quizOptions: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1037,6 +1012,7 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
     singularName: 'sort-note';
     pluralName: 'sort-notes';
     displayName: 'SortNote';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1080,6 +1056,7 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   };
   attributes: {
     VideoId: Attribute.UID;
+    VideoUrl: Attribute.String;
     day: Attribute.Relation<'api::video.video', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1122,7 +1099,6 @@ declare module '@strapi/types' {
       'api::day.day': ApiDayDay;
       'api::kagel-time.kagel-time': ApiKagelTimeKagelTime;
       'api::kegel.kegel': ApiKegelKegel;
-      'api::quiz.quiz': ApiQuizQuiz;
       'api::quiz-contant.quiz-contant': ApiQuizContantQuizContant;
       'api::sort-note.sort-note': ApiSortNoteSortNote;
       'api::video.video': ApiVideoVideo;

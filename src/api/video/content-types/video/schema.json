@@ -15,6 +15,9 @@
     "VideoId": {
       "type": "uid"
     },
+    "VideoUrl": {
+      "type": "string"
+    },
     "day": {
       "type": "relation",
       "relation": "oneToOne",
