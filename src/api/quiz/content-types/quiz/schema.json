@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::quiz-contant.quiz-contant",
       "mappedBy": "quiz"
+    },
+    "day": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::day.day",
+      "mappedBy": "quiz"
     }
   }
 }

@@ -801,6 +801,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     imageURL: Attribute.String;
     keywords: Attribute.JSON;
     viewCount: Attribute.BigInteger;
+    day: Attribute.Relation<'api::blog.blog', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -871,12 +872,16 @@ export interface ApiDayDay extends Schema.CollectionType {
     kagelComplete: Attribute.Boolean;
     quiz: Attribute.Relation<'api::day.day', 'oneToOne', 'api::quiz.quiz'>;
     quizComplete: Attribute.Boolean;
-    sortNote: Attribute.RichText;
     sortNoteComplete: Attribute.Boolean;
     reward: Attribute.Text;
     video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
     kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
+    sort_note: Attribute.Relation<
+      'api::day.day',
+      'oneToOne',
+      'api::sort-note.sort-note'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -942,6 +947,7 @@ export interface ApiKegelKegel extends Schema.CollectionType {
       'oneToMany',
       'api::kagel-time.kagel-time'
     >;
+    day: Attribute.Relation<'api::kegel.kegel', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -978,6 +984,7 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-contant.quiz-contant'
     >;
+    day: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1037,6 +1044,11 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
   attributes: {
     sortNoteId: Attribute.UID;
     sortNoteContent: Attribute.RichText;
+    day: Attribute.Relation<
+      'api::sort-note.sort-note',
+      'oneToOne',
+      'api::day.day'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1068,6 +1080,7 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   };
   attributes: {
     VideoId: Attribute.UID;
+    day: Attribute.Relation<'api::video.video', 'oneToOne', 'api::day.day'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

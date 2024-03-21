@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::kagel-time.kagel-time",
       "mappedBy": "kegel"
+    },
+    "day": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::day.day",
+      "mappedBy": "kegel"
     }
   }
 }

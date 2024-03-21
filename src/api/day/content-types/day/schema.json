@@ -30,13 +30,11 @@
     "quiz": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::quiz.quiz"
+      "target": "api::quiz.quiz",
+      "inversedBy": "day"
     },
     "quizComplete": {
       "type": "boolean"
-    },
-    "sortNote": {
-      "type": "richtext"
     },
     "sortNoteComplete": {
       "type": "boolean"
@@ -47,17 +45,26 @@
     "video": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::video.video"
+      "target": "api::video.video",
+      "inversedBy": "day"
     },
     "kegel": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::kegel.kegel"
+      "target": "api::kegel.kegel",
+      "inversedBy": "day"
     },
     "blog": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::blog.blog"
+      "target": "api::blog.blog",
+      "inversedBy": "day"
+    },
+    "sort_note": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sort-note.sort-note",
+      "inversedBy": "day"
     }
   }
 }
