@@ -830,11 +830,8 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     UserId: Attribute.UID;
     email: Attribute.Email;
     password: Attribute.Password;
-    gender: Attribute.String;
     age: Attribute.Integer;
     phone: Attribute.Integer;
-    language: Attribute.String;
-    target: Attribute.Integer;
     completeDay: Attribute.Integer;
     country: Attribute.String;
     day: Attribute.Relation<
@@ -846,6 +843,12 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     kagelComplete: Attribute.Boolean;
     quizComplete: Attribute.Boolean;
     sortNoteComplete: Attribute.Boolean;
+    gender: Attribute.Enumeration<['male ', 'female']>;
+    language: Attribute.Enumeration<['English', 'Bangla']> &
+      Attribute.DefaultTo<'English'>;
+    Firstname: Attribute.String;
+    Lastname: Attribute.String;
+    currentDay: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

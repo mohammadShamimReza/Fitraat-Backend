@@ -21,19 +21,10 @@
     "password": {
       "type": "password"
     },
-    "gender": {
-      "type": "string"
-    },
     "age": {
       "type": "integer"
     },
     "phone": {
-      "type": "integer"
-    },
-    "language": {
-      "type": "string"
-    },
-    "target": {
       "type": "integer"
     },
     "completeDay": {
@@ -59,6 +50,30 @@
     },
     "sortNoteComplete": {
       "type": "boolean"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male ",
+        "female"
+      ]
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "English",
+        "Bangla"
+      ],
+      "default": "English"
+    },
+    "Firstname": {
+      "type": "string"
+    },
+    "Lastname": {
+      "type": "string"
+    },
+    "currentDay": {
+      "type": "integer"
     }
   }
 }
