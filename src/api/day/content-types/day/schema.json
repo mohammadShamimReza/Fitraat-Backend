@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "DayId": {
-      "type": "uid",
-      "required": true
-    },
     "count": {
       "type": "integer",
       "required": true,
@@ -53,6 +49,15 @@
       "relation": "oneToOne",
       "target": "api::sort-note.sort-note",
       "inversedBy": "day"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "day"
+    },
+    "DayId": {
+      "type": "integer"
     }
   }
 }

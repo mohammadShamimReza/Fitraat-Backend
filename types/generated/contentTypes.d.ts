@@ -690,7 +690,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -719,6 +718,24 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    age: Attribute.Integer;
+    phone: Attribute.BigInteger;
+    compliteDay: Attribute.Integer;
+    country: Attribute.String;
+    day: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::day.day'
+    >;
+    videoComplete: Attribute.Boolean;
+    kagelComplete: Attribute.Boolean;
+    quizComplete: Attribute.Boolean;
+    sortNoteComplete: Attribute.Boolean;
+    gender: Attribute.Enumeration<['male ', 'female']>;
+    language: Attribute.Enumeration<['English', 'Bangla']>;
+    Firstname: Attribute.String;
+    Lastname: Attribute.String;
+    currentDay: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -879,7 +896,6 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    DayId: Attribute.UID & Attribute.Required;
     count: Attribute.Integer & Attribute.Required & Attribute.Unique;
     reward: Attribute.Text;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
@@ -895,6 +911,12 @@ export interface ApiDayDay extends Schema.CollectionType {
       'oneToOne',
       'api::sort-note.sort-note'
     >;
+    user: Attribute.Relation<
+      'api::day.day',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    DayId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
