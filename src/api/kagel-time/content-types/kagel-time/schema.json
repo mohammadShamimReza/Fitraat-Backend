@@ -27,8 +27,9 @@
       "inversedBy": "kegel_times"
     },
     "kagelTimeId": {
-      "type": "uid",
-      "required": true
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

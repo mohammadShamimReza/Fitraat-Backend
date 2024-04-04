@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "videoId": {
-      "type": "uid",
-      "required": true
-    },
     "VideoUrl": {
       "type": "string",
       "required": true,
@@ -27,6 +23,11 @@
       "relation": "oneToOne",
       "target": "api::day.day",
       "mappedBy": "video"
+    },
+    "videoId": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

@@ -12,18 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "BlogId": {
-      "type": "uid",
-      "required": true
-    },
     "topic": {
       "type": "string",
       "required": true,
       "unique": false
-    },
-    "content": {
-      "type": "text",
-      "required": true
     },
     "title": {
       "type": "string",
@@ -48,6 +40,12 @@
       "relation": "oneToOne",
       "target": "api::day.day",
       "mappedBy": "blog"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "BlogId": {
+      "type": "integer"
     }
   }
 }

@@ -66,57 +66,60 @@
       "configurable": false
     },
     "age": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "phone": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true,
+      "unique": true
     },
     "compliteDay": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "country": {
-      "type": "string"
-    },
-    "day": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::day.day",
-      "inversedBy": "user"
+      "type": "string",
+      "required": true,
+      "default": "Bangladesh"
     },
     "videoComplete": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "kagelComplete": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "quizComplete": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "sortNoteComplete": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "gender": {
       "type": "enumeration",
       "enum": [
-        "male ",
+        "male",
         "female"
-      ]
+      ],
+      "required": true
     },
     "language": {
       "type": "enumeration",
       "enum": [
         "English",
         "Bangla"
-      ]
-    },
-    "Firstname": {
-      "type": "string"
-    },
-    "Lastname": {
-      "type": "string"
+      ],
+      "required": true,
+      "default": "English"
     },
     "currentDay": {
-      "type": "integer"
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::day.day"
     }
   }
 }

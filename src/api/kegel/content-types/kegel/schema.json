@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "KagelId": {
-      "type": "uid",
-      "required": true
-    },
     "kegel_times": {
       "type": "relation",
       "relation": "oneToMany",
@@ -27,6 +23,11 @@
       "relation": "oneToOne",
       "target": "api::day.day",
       "mappedBy": "kegel"
+    },
+    "KagelId": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

@@ -25,10 +25,18 @@
     "quizOptions": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "quizId": {
-      "type": "uid"
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "day": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::day.day",
+      "mappedBy": "quiz"
     }
   }
 }

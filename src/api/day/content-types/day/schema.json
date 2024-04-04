@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "count": {
-      "type": "integer",
-      "required": true,
-      "unique": true
-    },
     "reward": {
       "type": "text"
     },
@@ -25,12 +20,6 @@
       "relation": "oneToOne",
       "target": "api::blog.blog",
       "inversedBy": "day"
-    },
-    "customer": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::customer.customer",
-      "mappedBy": "day"
     },
     "kegel": {
       "type": "relation",
@@ -50,14 +39,16 @@
       "target": "api::sort-note.sort-note",
       "inversedBy": "day"
     },
-    "user": {
+    "DayId": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "quiz": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "day"
-    },
-    "DayId": {
-      "type": "integer"
+      "target": "api::quiz-contant.quiz-contant",
+      "inversedBy": "day"
     }
   }
 }

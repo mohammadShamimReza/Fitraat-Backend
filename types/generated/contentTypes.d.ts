@@ -585,6 +585,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -718,24 +765,25 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    age: Attribute.Integer;
-    phone: Attribute.BigInteger;
-    compliteDay: Attribute.Integer;
-    country: Attribute.String;
-    day: Attribute.Relation<
+    age: Attribute.Integer & Attribute.Required;
+    phone: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
+    compliteDay: Attribute.Integer & Attribute.DefaultTo<0>;
+    country: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Bangladesh'>;
+    videoComplete: Attribute.Boolean & Attribute.DefaultTo<false>;
+    kagelComplete: Attribute.Boolean & Attribute.DefaultTo<false>;
+    quizComplete: Attribute.Boolean & Attribute.DefaultTo<false>;
+    sortNoteComplete: Attribute.Boolean & Attribute.DefaultTo<false>;
+    gender: Attribute.Enumeration<['male', 'female']> & Attribute.Required;
+    language: Attribute.Enumeration<['English', 'Bangla']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'English'>;
+    currentDay: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
       'api::day.day'
     >;
-    videoComplete: Attribute.Boolean;
-    kagelComplete: Attribute.Boolean;
-    quizComplete: Attribute.Boolean;
-    sortNoteComplete: Attribute.Boolean;
-    gender: Attribute.Enumeration<['male ', 'female']>;
-    language: Attribute.Enumeration<['English', 'Bangla']>;
-    Firstname: Attribute.String;
-    Lastname: Attribute.String;
-    currentDay: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -746,53 +794,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
@@ -812,9 +813,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    BlogId: Attribute.UID & Attribute.Required;
     topic: Attribute.String & Attribute.Required;
-    content: Attribute.Text & Attribute.Required;
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     imageURL: Attribute.String & Attribute.Required & Attribute.Unique;
     keywords: Attribute.JSON;
@@ -822,64 +821,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<'01'>;
     day: Attribute.Relation<'api::blog.blog', 'oneToOne', 'api::day.day'>;
+    content: Attribute.RichText;
+    BlogId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCustomerCustomer extends Schema.CollectionType {
-  collectionName: 'customers';
-  info: {
-    singularName: 'customer';
-    pluralName: 'customers';
-    displayName: 'customer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    UserId: Attribute.UID;
-    email: Attribute.Email;
-    password: Attribute.Password;
-    age: Attribute.Integer;
-    phone: Attribute.Integer;
-    completeDay: Attribute.Integer;
-    country: Attribute.String;
-    day: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'api::day.day'
-    >;
-    videoComplete: Attribute.Boolean;
-    kagelComplete: Attribute.Boolean;
-    quizComplete: Attribute.Boolean;
-    sortNoteComplete: Attribute.Boolean;
-    gender: Attribute.Enumeration<['male ', 'female']>;
-    language: Attribute.Enumeration<['English', 'Bangla']> &
-      Attribute.DefaultTo<'English'>;
-    Firstname: Attribute.String;
-    Lastname: Attribute.String;
-    currentDay: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::customer.customer',
-      'oneToOne',
-      'admin::user'
-    > &
       Attribute.Private;
   };
 }
@@ -896,14 +845,8 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    count: Attribute.Integer & Attribute.Required & Attribute.Unique;
     reward: Attribute.Text;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
-    customer: Attribute.Relation<
-      'api::day.day',
-      'oneToOne',
-      'api::customer.customer'
-    >;
     kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
     sort_note: Attribute.Relation<
@@ -911,12 +854,12 @@ export interface ApiDayDay extends Schema.CollectionType {
       'oneToOne',
       'api::sort-note.sort-note'
     >;
-    user: Attribute.Relation<
+    DayId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    quiz: Attribute.Relation<
       'api::day.day',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::quiz-contant.quiz-contant'
     >;
-    DayId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -946,7 +889,7 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
       'manyToOne',
       'api::kegel.kegel'
     >;
-    kagelTimeId: Attribute.UID & Attribute.Required;
+    kagelTimeId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -977,13 +920,13 @@ export interface ApiKegelKegel extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    KagelId: Attribute.UID & Attribute.Required;
     kegel_times: Attribute.Relation<
       'api::kegel.kegel',
       'oneToMany',
       'api::kagel-time.kagel-time'
     >;
     day: Attribute.Relation<'api::kegel.kegel', 'oneToOne', 'api::day.day'>;
+    KagelId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1016,8 +959,13 @@ export interface ApiQuizContantQuizContant extends Schema.CollectionType {
   attributes: {
     question: Attribute.String & Attribute.Required & Attribute.Unique;
     answer: Attribute.String & Attribute.Required & Attribute.Unique;
-    quizOptions: Attribute.String & Attribute.Required & Attribute.Unique;
-    quizId: Attribute.UID;
+    quizOptions: Attribute.String & Attribute.Required;
+    quizId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    day: Attribute.Relation<
+      'api::quiz-contant.quiz-contant',
+      'oneToOne',
+      'api::day.day'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1048,7 +996,6 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    sortNoteId: Attribute.UID & Attribute.Required;
     sortNoteContent: Attribute.RichText &
       Attribute.Required &
       Attribute.DefaultTo<'\u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09B0 \u0995\u09BE\u099B\u09C7 \u09B8\u09CE \u09A5\u09BE\u0995\u09BE \u0986\u09B0 \u09A8\u09BF\u099C\u09C7\u09B0 \u09AC\u09BF\u09AC\u09C7\u0995\u09C7\u09B0 \u0995\u09BE\u099B\u09C7 \u09AA\u09B0\u09BF\u099A\u09CD\u099B\u09A8\u09CD\u09A8 \u09A5\u09BE\u0995\u09BE \u09B8\u09AC\u09A5\u09C7\u0995\u09C7 \u0995\u09A0\u09BF\u09A8\uD83D\uDE13 \u0986\u09B2\u09CD\u09B2\u09BE\u09B9\u09CD \u0986\u09AE\u09BE\u0995\u09C7 \u0986\u09B0 \u0986\u09AA\u09A8\u09BE\u09A6\u09C7\u09B0 \u09B8\u09AC\u09BE\u0987\u0995\u09C7 \u098F\u0987\u09B8\u09AC \u09AB\u09C7\u09CE\u09A8\u09BE \u09A5\u09C7\u0995\u09C7 \u09B9\u09C7\u09AB\u09BE\u099C\u09A4 \u0995\u09B0\u09C1\u0995\u0964\u0964\u0986\u09AE\u09C0\u09A8'>;
@@ -1057,6 +1004,7 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
       'oneToOne',
       'api::day.day'
     >;
+    sortNoteId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1087,12 +1035,12 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    videoId: Attribute.UID & Attribute.Required;
     VideoUrl: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
       Attribute.DefaultTo<'https://www.youtube.com/embed/7WUKdCV8J34'>;
     day: Attribute.Relation<'api::video.video', 'oneToOne', 'api::day.day'>;
+    videoId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1125,12 +1073,11 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::blog.blog': ApiBlogBlog;
-      'api::customer.customer': ApiCustomerCustomer;
       'api::day.day': ApiDayDay;
       'api::kagel-time.kagel-time': ApiKagelTimeKagelTime;
       'api::kegel.kegel': ApiKegelKegel;

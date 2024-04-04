@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "sortNoteId": {
-      "type": "uid",
-      "required": true
-    },
     "sortNoteContent": {
       "type": "richtext",
       "required": true,
@@ -26,6 +22,11 @@
       "relation": "oneToOne",
       "target": "api::day.day",
       "mappedBy": "sort_note"
+    },
+    "sortNoteId": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }
