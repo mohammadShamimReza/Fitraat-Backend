@@ -779,11 +779,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     language: Attribute.Enumeration<['English', 'Bangla']> &
       Attribute.Required &
       Attribute.DefaultTo<'English'>;
-    currentDay: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'api::day.day'
-    >;
+    currentDay: Attribute.Integer & Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
