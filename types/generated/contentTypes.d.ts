@@ -878,14 +878,13 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    squeeze: Attribute.Integer & Attribute.Required;
-    stop: Attribute.Integer & Attribute.Required;
     kegel: Attribute.Relation<
       'api::kagel-time.kagel-time',
       'manyToOne',
       'api::kegel.kegel'
     >;
     kagelTimeId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    times: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

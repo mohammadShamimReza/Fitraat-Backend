@@ -12,14 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "squeeze": {
-      "type": "integer",
-      "required": true
-    },
-    "stop": {
-      "type": "integer",
-      "required": true
-    },
     "kegel": {
       "type": "relation",
       "relation": "manyToOne",
@@ -30,6 +22,9 @@
       "type": "integer",
       "required": true,
       "unique": true
+    },
+    "times": {
+      "type": "text"
     }
   }
 }
