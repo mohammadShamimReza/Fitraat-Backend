@@ -24,7 +24,9 @@
       "unique": true
     },
     "times": {
-      "type": "text"
+      "type": "text",
+      "required": true,
+      "default": "2, 5, 6, 8, 8, 9, 6, 2, 1, 1"
     }
   }
 }

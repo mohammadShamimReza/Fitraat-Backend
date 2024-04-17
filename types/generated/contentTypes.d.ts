@@ -884,7 +884,9 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
       'api::kegel.kegel'
     >;
     kagelTimeId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    times: Attribute.Text;
+    times: Attribute.Text &
+      Attribute.Required &
+      Attribute.DefaultTo<'2, 5, 6, 8, 8, 9, 6, 2, 1, 1'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
