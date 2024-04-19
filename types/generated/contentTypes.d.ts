@@ -767,7 +767,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     age: Attribute.Integer & Attribute.Required;
     phone: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
-    compliteDay: Attribute.Integer & Attribute.DefaultTo<0>;
+    compliteDay: Attribute.Integer;
     country: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Bangladesh'>;

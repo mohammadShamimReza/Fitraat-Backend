@@ -75,8 +75,7 @@
       "unique": true
     },
     "compliteDay": {
-      "type": "integer",
-      "default": 0
+      "type": "integer"
     },
     "country": {
       "type": "string",
