@@ -1020,6 +1020,36 @@ export interface ApiSortNoteSortNote extends Schema.CollectionType {
   };
 }
 
+export interface ApiSubscriberSubscriber extends Schema.CollectionType {
+  collectionName: 'subscribers';
+  info: {
+    singularName: 'subscriber';
+    pluralName: 'subscribers';
+    displayName: 'Subscriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::subscriber.subscriber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::subscriber.subscriber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
@@ -1080,6 +1110,7 @@ declare module '@strapi/types' {
       'api::kegel.kegel': ApiKegelKegel;
       'api::quiz-contant.quiz-contant': ApiQuizContantQuizContant;
       'api::sort-note.sort-note': ApiSortNoteSortNote;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
       'api::video.video': ApiVideoVideo;
     }
   }
