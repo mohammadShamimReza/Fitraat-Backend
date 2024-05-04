@@ -1066,7 +1066,6 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   attributes: {
     VideoUrl: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.DefaultTo<'https://www.youtube.com/embed/7WUKdCV8J34'>;
     day: Attribute.Relation<'api::video.video', 'oneToOne', 'api::day.day'>;
     videoId: Attribute.Integer & Attribute.Required & Attribute.Unique;

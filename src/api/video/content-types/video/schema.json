@@ -15,7 +15,7 @@
     "VideoUrl": {
       "type": "string",
       "required": true,
-      "unique": true,
+      "unique": false,
       "default": "https://www.youtube.com/embed/7WUKdCV8J34"
     },
     "day": {
