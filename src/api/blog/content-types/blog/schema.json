@@ -24,8 +24,9 @@
     },
     "imageURL": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": false,
+      "unique": true,
+      "default": "https://i.ibb.co/fY0F1Xw/stopPorn.png"
     },
     "keywords": {
       "type": "json"

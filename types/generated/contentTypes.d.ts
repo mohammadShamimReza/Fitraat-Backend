@@ -811,7 +811,9 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   attributes: {
     topic: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required & Attribute.Unique;
-    imageURL: Attribute.String & Attribute.Required & Attribute.Unique;
+    imageURL: Attribute.String &
+      Attribute.Unique &
+      Attribute.DefaultTo<'https://i.ibb.co/fY0F1Xw/stopPorn.png'>;
     keywords: Attribute.JSON;
     viewCount: Attribute.BigInteger &
       Attribute.Required &
