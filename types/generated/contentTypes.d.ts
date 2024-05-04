@@ -843,7 +843,9 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    reward: Attribute.Text & Attribute.Required;
+    reward: Attribute.Text &
+      Attribute.Required &
+      Attribute.DefaultTo<"Thank's for try to complete this Day">;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
     kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;

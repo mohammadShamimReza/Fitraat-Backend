@@ -14,7 +14,8 @@
   "attributes": {
     "reward": {
       "type": "text",
-      "required": true
+      "required": true,
+      "default": "Thank's for try to complete this Day"
     },
     "blog": {
       "type": "relation",
