@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "reward": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "blog": {
       "type": "relation",

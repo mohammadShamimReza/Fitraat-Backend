@@ -12,9 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "kegel": {
+    "kegels": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::kegel.kegel",
       "inversedBy": "kegel_times"
     },

@@ -812,7 +812,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     topic: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     imageURL: Attribute.String &
-      Attribute.Unique &
+      Attribute.Required &
       Attribute.DefaultTo<'https://i.ibb.co/fY0F1Xw/stopPorn.png'>;
     keywords: Attribute.JSON;
     viewCount: Attribute.BigInteger &
@@ -843,7 +843,7 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    reward: Attribute.Text;
+    reward: Attribute.Text & Attribute.Required;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
     kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
@@ -880,9 +880,9 @@ export interface ApiKagelTimeKagelTime extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    kegel: Attribute.Relation<
+    kegels: Attribute.Relation<
       'api::kagel-time.kagel-time',
-      'manyToOne',
+      'manyToMany',
       'api::kegel.kegel'
     >;
     kagelTimeId: Attribute.Integer & Attribute.Required & Attribute.Unique;
@@ -919,13 +919,13 @@ export interface ApiKegelKegel extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    kegel_times: Attribute.Relation<
-      'api::kegel.kegel',
-      'oneToMany',
-      'api::kagel-time.kagel-time'
-    >;
     day: Attribute.Relation<'api::kegel.kegel', 'oneToOne', 'api::day.day'>;
     KagelId: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    kegel_times: Attribute.Relation<
+      'api::kegel.kegel',
+      'manyToMany',
+      'api::kagel-time.kagel-time'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
