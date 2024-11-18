@@ -34,9 +34,9 @@
     },
     "day": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::day.day",
-      "mappedBy": "quiz"
+      "inversedBy": "quizzes"
     }
   }
 }

@@ -1,4 +1,6 @@
 module.exports = ({ env }) => {
+  console.log("Database Password:", env("DATABASE_PASSWORD"));
+
   const client = env("DATABASE_CLIENT");
 
   const connections = {
@@ -8,16 +10,14 @@ module.exports = ({ env }) => {
         ssl: env.bool("DATABASE_SSL", false) && {
           rejectUnauthorized: env.bool(
             "DATABASE_SSL_REJECT_UNAUTHORIZED",
-            true
+            false // Change to false to bypass SSL verification
           ),
-          prepare: false,
         },
         schema: env("DATABASE_SCHEMA", "public"),
       },
-
       pool: {
-        min: env.int("DATABASE_POOL_MIN"),
-        max: env.int("DATABASE_POOL_MAX"),
+        min: env.int("DATABASE_POOL_MIN", 2),
+        max: env.int("DATABASE_POOL_MAX", 10),
       },
     },
   };
@@ -25,9 +25,7 @@ module.exports = ({ env }) => {
   return {
     connection: {
       client,
-
       ...connections[client],
-
       acquireConnectionTimeout: env.int("DATABASE_CONNECTION_TIMEOUT", 60000),
     },
   };

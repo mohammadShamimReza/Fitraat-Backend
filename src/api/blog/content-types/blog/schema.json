@@ -47,6 +47,16 @@
     },
     "BlogId": {
       "type": "integer"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "saves_blogs"
+    },
+    "authorName": {
+      "type": "string",
+      "default": "Mohammad Shamim Reza"
     }
   }
 }

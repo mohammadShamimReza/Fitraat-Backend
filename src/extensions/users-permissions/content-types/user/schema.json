@@ -119,6 +119,47 @@
       "type": "integer",
       "default": 1,
       "unique": false
+    },
+    "saves_blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "user"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "user"
+    },
+    "post_like": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::post-like.post-like",
+      "inversedBy": "user"
+    },
+    "post_comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post-comment.post-comment",
+      "mappedBy": "user"
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "paid": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "tran_id": {
+      "type": "string"
+    },
+    "varifiedSine": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

@@ -780,6 +780,30 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<'English'>;
     currentDay: Attribute.Integer & Attribute.DefaultTo<1>;
+    saves_blogs: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    posts: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::post.post'
+    >;
+    post_like: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'api::post-like.post-like'
+    >;
+    post_comments: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::post-comment.post-comment'
+    >;
+    startDate: Attribute.Date & Attribute.Required;
+    paid: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    tran_id: Attribute.String;
+    varifiedSine: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -821,6 +845,12 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     day: Attribute.Relation<'api::blog.blog', 'oneToOne', 'api::day.day'>;
     content: Attribute.RichText;
     BlogId: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    authorName: Attribute.String & Attribute.DefaultTo<'Mohammad Shamim Reza'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -843,9 +873,6 @@ export interface ApiDayDay extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    reward: Attribute.Text &
-      Attribute.Required &
-      Attribute.DefaultTo<"Thank's for try to complete this Day">;
     blog: Attribute.Relation<'api::day.day', 'oneToOne', 'api::blog.blog'>;
     kegel: Attribute.Relation<'api::day.day', 'oneToOne', 'api::kegel.kegel'>;
     video: Attribute.Relation<'api::day.day', 'oneToOne', 'api::video.video'>;
@@ -855,9 +882,9 @@ export interface ApiDayDay extends Schema.CollectionType {
       'api::sort-note.sort-note'
     >;
     DayId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    quiz: Attribute.Relation<
+    quizzes: Attribute.Relation<
       'api::day.day',
-      'oneToOne',
+      'oneToMany',
       'api::quiz-contant.quiz-contant'
     >;
     createdAt: Attribute.DateTime;
@@ -866,6 +893,75 @@ export interface ApiDayDay extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::day.day', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::day.day', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEmergencyEmergency extends Schema.CollectionType {
+  collectionName: 'emergencies';
+  info: {
+    singularName: 'emergency';
+    pluralName: 'emergencies';
+    displayName: 'emergency';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    vedio_url: Attribute.String;
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::emergency.emergency',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::emergency.emergency',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFreeBlogFreeBlog extends Schema.CollectionType {
+  collectionName: 'free_blogs';
+  info: {
+    singularName: 'free-blog';
+    pluralName: 'free-blogs';
+    displayName: 'FreeBlog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    topic: Attribute.String;
+    title: Attribute.String;
+    imageURL: Attribute.String;
+    keywords: Attribute.JSON;
+    viewCount: Attribute.BigInteger;
+    content: Attribute.RichText;
+    authorName: Attribute.String & Attribute.DefaultTo<'Mohammad Shamim Reza'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::free-blog.free-blog',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::free-blog.free-blog',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -946,6 +1042,125 @@ export interface ApiKegelKegel extends Schema.CollectionType {
   };
 }
 
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: Attribute.Text;
+    user: Attribute.Relation<
+      'api::post.post',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    post_likes: Attribute.Relation<
+      'api::post.post',
+      'oneToMany',
+      'api::post-like.post-like'
+    >;
+    post_comments: Attribute.Relation<
+      'api::post.post',
+      'oneToMany',
+      'api::post-comment.post-comment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostCommentPostComment extends Schema.CollectionType {
+  collectionName: 'post_comments';
+  info: {
+    singularName: 'post-comment';
+    pluralName: 'post-comments';
+    displayName: 'postComment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::post-comment.post-comment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    post: Attribute.Relation<
+      'api::post-comment.post-comment',
+      'manyToOne',
+      'api::post.post'
+    >;
+    comment: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::post-comment.post-comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::post-comment.post-comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostLikePostLike extends Schema.CollectionType {
+  collectionName: 'post_likes';
+  info: {
+    singularName: 'post-like';
+    pluralName: 'post-likes';
+    displayName: 'PostLike';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    post: Attribute.Relation<
+      'api::post-like.post-like',
+      'manyToOne',
+      'api::post.post'
+    >;
+    user: Attribute.Relation<
+      'api::post-like.post-like',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::post-like.post-like',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::post-like.post-like',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiQuizContantQuizContant extends Schema.CollectionType {
   collectionName: 'quiz_contants';
   info: {
@@ -964,7 +1179,7 @@ export interface ApiQuizContantQuizContant extends Schema.CollectionType {
     quizId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     day: Attribute.Relation<
       'api::quiz-contant.quiz-contant',
-      'oneToOne',
+      'manyToOne',
       'api::day.day'
     >;
     createdAt: Attribute.DateTime;
@@ -1109,8 +1324,13 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::blog.blog': ApiBlogBlog;
       'api::day.day': ApiDayDay;
+      'api::emergency.emergency': ApiEmergencyEmergency;
+      'api::free-blog.free-blog': ApiFreeBlogFreeBlog;
       'api::kagel-time.kagel-time': ApiKagelTimeKagelTime;
       'api::kegel.kegel': ApiKegelKegel;
+      'api::post.post': ApiPostPost;
+      'api::post-comment.post-comment': ApiPostCommentPostComment;
+      'api::post-like.post-like': ApiPostLikePostLike;
       'api::quiz-contant.quiz-contant': ApiQuizContantQuizContant;
       'api::sort-note.sort-note': ApiSortNoteSortNote;
       'api::subscriber.subscriber': ApiSubscriberSubscriber;

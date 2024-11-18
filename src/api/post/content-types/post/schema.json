@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "posts"
+    },
+    "post_likes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post-like.post-like",
+      "mappedBy": "post"
+    },
+    "post_comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post-comment.post-comment",
+      "mappedBy": "post"
+    }
+  }
+}

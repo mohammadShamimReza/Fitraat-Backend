@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "emergencies",
+  "info": {
+    "singularName": "emergency",
+    "pluralName": "emergencies",
+    "displayName": "emergency",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "vedio_url": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    }
+  }
+}

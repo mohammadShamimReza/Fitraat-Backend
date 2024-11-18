@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "reward": {
-      "type": "text",
-      "required": true,
-      "default": "Thank's for try to complete this Day"
-    },
     "blog": {
       "type": "relation",
       "relation": "oneToOne",
@@ -46,11 +41,11 @@
       "required": true,
       "unique": true
     },
-    "quiz": {
+    "quizzes": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::quiz-contant.quiz-contant",
-      "inversedBy": "day"
+      "mappedBy": "day"
     }
   }
 }
