@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "post": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::post.post",
-      "inversedBy": "post_likes"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToMany",

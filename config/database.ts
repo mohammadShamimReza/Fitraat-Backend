@@ -21,6 +21,7 @@ module.exports = ({ env }) => {
         max: env.int("DATABASE_POOL_MAX", 10),
       },
     },
+    debug: false,
   };
 
   return {

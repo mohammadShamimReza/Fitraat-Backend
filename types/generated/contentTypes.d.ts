@@ -1060,11 +1060,6 @@ export interface ApiPostPost extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    post_likes: Attribute.Relation<
-      'api::post.post',
-      'oneToMany',
-      'api::post-like.post-like'
-    >;
     post_comments: Attribute.Relation<
       'api::post.post',
       'oneToMany',
@@ -1133,11 +1128,6 @@ export interface ApiPostLikePostLike extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    post: Attribute.Relation<
-      'api::post-like.post-like',
-      'manyToOne',
-      'api::post.post'
-    >;
     user: Attribute.Relation<
       'api::post-like.post-like',
       'oneToMany',
