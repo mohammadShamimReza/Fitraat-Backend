@@ -8,7 +8,7 @@
     "name": "A Strapi developer"
   },
   "scripts": {
-    "build": "strapi build",
+    "build": "HOSTNAME=fallback-hostname strapi build",
     "dev": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi"
