@@ -49,7 +49,7 @@ NEXT_PUBLIC_BASE_URL="you backend setup"
 
 1. **Clone the Repository**
    ```bash
-   git clone <https://github.com/mohammadShamimReza/Fitraat-Frontend-web>
+   git clone <gh repo clone mohammadShamimReza/Fitraat-Backend>
    cd <Cloned repo>
    npm install
    npm run dev
