@@ -1,16 +1,56 @@
-# -Backend
-## Overview
-Discover MindReset, your partner in overcoming addictions, especially those linked to social media and pornography. Using science-backed techniques like behavioral science, cognitive therapy, and positive psychology, MindReset guides you through a structured and caring journey to create a healthier digital lifestyle.
+# Fitraat Backend using strapi
 
+## Overview
+
+**Fitraat** is a 40-day marathon program designed to help individuals overcome addiction to adult content (porn). The app provides daily tasks, an emergency help section for uncontrollable moments, and community support. Users can also access informative blogs to aid their recovery journey.
 
 ## Key Features
 
-- **Daily Progress Steps:** Take small daily steps for big changes, making your recovery journey manageable and rewarding.
-- **Inspiring Content:** Access a curated mix of motivational videos, expert blogs, and interactive exercises to empower you on your path to freedom.
-- **Community Support:** Connect with others facing similar challenges in a safe and understanding community. Share your story, find encouragement, and celebrate victories together.
-- **Expert Guidance:** Access support from licensed mental health professionals and addiction counselors, ensuring you have the expert assistance you need.
-- **Stay Motivated:** Enjoy a positive and uplifting experience with gamification elements. Earn rewards and badges as you achieve milestones.
+- **Daily Progress Steps**  
+  Users complete four types of tasks each day for 40 days:
+  - Videos  
+  - Kegel exercises  
+  - Quizzes  
+  - Blogs  
+
+- **Community Support**  
+  - Logged-in users can post questions and provide answers through comments in the feed section.  
+  - Guests (non-logged-in users) can only view the feed but cannot interact.  
+
+- **Emergency Help**  
+  - A dedicated section for moments of intense cravings or lack of control.  
+  - Includes videos, quotes, advice, and achievements for successfully overcoming such moments.  
+
+- **Free and Pro Access**  
+  - Free users have access to the system for 3 days.  
+  - Paid users gain Pro membership via **SSL Commerz** integration.  
+
+- **Blogs**  
+  - Accessible to all users.  
+  - Features answers to common myths and questions related to addiction and recovery.  
+
+---
+
+## How to run in locally
 
 
+### Prerequisites
 
-MindReset simplifies the science of recovery for you, offering a user-friendly experience to guide you towards a digital life that promotes well-being. Start your transformation today!
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/en/) (LTS version recommended)
+- [npm](https://www.npmjs.com/)
+- [PostgreSQL](https://www.postgresql.org/) (if using a local database)
+
+### .env setup
+NEXT_PUBLIC_BASE_URL="you backend setup"
+
+
+### Steps to Run Locally
+
+1. **Clone the Repository**
+   ```bash
+   git clone <https://github.com/mohammadShamimReza/Fitraat-Frontend-web>
+   cd <Cloned repo>
+   npm install
+   npm run dev
+```
