@@ -28,7 +28,7 @@ import { v4 as uuidv4 } from "uuid";
         total_amount,
         currency,
         tran_id, // Unique transaction ID
-        success_url: `${backend_url}/api/payment/success/${userId}`,
+        success_url: `${frontend_url}/api/payment/success/${userId}`,
         fail_url: `${frontend_url}/payment/fail/${userId}`,
         cancel_url: `${frontend_url}/payment/cancel/${userId}`,
         ipn_url: `${frontend_url}/payment/ipn`,
@@ -64,7 +64,11 @@ import { v4 as uuidv4 } from "uuid";
           "plugin::users-permissions.user",
           userId,
           {
-            data: { tran_id: tran_id },
+            data: {
+              paid: true,
+              tran_id: tran_id,
+              startDate: new Date(Date.now()).toISOString(),
+            },
           }
         );
 
@@ -77,7 +81,6 @@ import { v4 as uuidv4 } from "uuid";
 
     async success(ctx) {
       const { userId } = ctx.request.params;
-      console.log(userId);
 
       try {
         const result = await strapi.entityService.update(
@@ -87,7 +90,6 @@ import { v4 as uuidv4 } from "uuid";
             data: { paid: true },
           }
         );
-        console.log(result);
         if (result) {
           ctx.response.redirect(
             `${frontend_url}/payment/redirectSuccess/${userId}`
