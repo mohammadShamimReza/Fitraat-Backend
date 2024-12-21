@@ -67,7 +67,6 @@ import { v4 as uuidv4 } from "uuid";
             data: {
               paid: true,
               tran_id: tran_id,
-              startDate: new Date(Date.now()).toISOString(),
             },
           }
         );
@@ -87,7 +86,7 @@ import { v4 as uuidv4 } from "uuid";
           "plugin::users-permissions.user",
           userId,
           {
-            data: { paid: true },
+            data: { paid: true, startDate: new Date(Date.now()).toISOString() },
           }
         );
         if (result) {
