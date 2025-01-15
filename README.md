@@ -31,6 +31,86 @@
 
 ---
 
+## API Documentation
+
+### Header
+- **Authorization Token**: `Bearer ${token}`
+
+---
+
+### **Free-Blog**
+1. **Find All**: `/api/free-blogs` [GET]
+2. **Find One**: `/api/free-blogs/:id` [GET]
+
+---
+
+### **Blog**
+1. **Find All**: `/api/blogs` [GET]
+2. **Find One**: `/api/blogs/:id` [GET]
+
+---
+
+### **Emergency**
+1. **Find All**: `/api/emergencies` [GET]
+2. **Find One**: `/api/emergencies/:id` [GET]
+
+---
+
+### **Kagel-Times**
+1. **Find All**: `/api/kagel-times` [GET]
+2. **Find One**: `/api/kagel-times/:id` [GET]
+
+---
+
+### **Kegel**
+1. **Find All**: `/api/kegel` [GET]
+2. **Find One**: `/api/kegel/:id` [GET]
+
+---
+
+### **Post**
+1. **Find All**: `/api/posts` [GET]
+2. **Find One**: `/api/posts/:id` [GET]
+
+---
+
+### **Post-Comment**
+1. **Create**: `/api/post-comments` [POST]
+2. **Find All**: `/api/post-comments` [GET]
+3. **Find One**: `/api/post-comments/:id` [GET]
+4. **Delete**: `/api/post-comments/:id` [DELETE]
+
+---
+
+### **Quiz-Content**
+1. **Find All**: `/api/quiz-contants` [GET]
+2. **Find One**: `/api/quiz-contants/:id` [GET]
+
+---
+
+### **Subscribers**
+1. **Find All**: `/api/subscribers` [GET]
+2. **Find One**: `/api/subscribers/:id` [GET]
+3. **Create**: `/api/subscribers` [POST]
+4. **Delete**: `/api/subscribers/:id` [DELETE]
+
+---
+
+### **Video**
+1. **Find All**: `/api/videos` [GET]
+2. **Find One**: `/api/videos/:id` [GET]
+
+---
+
+### **Day**
+1. **Find All**: `/api/days` [GET]
+2. **Find One**: `/api/days/:id` [GET]
+3. **Create**: `/api/days` [POST]
+4. **Delete**: `/api/days/:id` [DELETE]
+
+---
+
+
 ## How to run in locally
 
 
